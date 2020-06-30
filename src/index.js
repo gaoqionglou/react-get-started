@@ -95,6 +95,6 @@ render(
     //练习HOC高阶组件
     // <HocCmp />
     
-    <CartApp/>,
+    <CartApp store={store}/>,
     document.querySelector('#root')
 )

@@ -3,16 +3,16 @@ import { CartList } from './components'
 class App extends Component {
     constructor(props) {
         super(props)
-        this.state = ({
-            
-        })
+        this.state = {}
     }
-    
+
+
     render() {
+ 
         return (
 
             <div>
-              <CartList/>  
+                <CartList store={this.props.store}   />
             </div>
         );
     }

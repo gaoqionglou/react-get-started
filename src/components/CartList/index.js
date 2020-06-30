@@ -1,7 +1,28 @@
 import React, { Component } from 'react'
-
+import { increment, decrement } from '../../actions/cart'
 class CartList extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            cartList: []
+        }
+    }
+    getState = () => {
+
+        this.setState(
+            {
+                cartList: this.props.store.getState().cart
+            }
+        )
+
+    }
+    componentDidMount() {
+        this.getState()
+        this.props.store.subscribe(this.getState)
+    }
     render() {
+
         return (
             <table>
                 <thead>
@@ -14,19 +35,29 @@ class CartList extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th>1</th>
-                        <th>Apple</th>
-                        <th>888</th>
-                        <th>
-                            <button>-</button>
-                            <span>10</span>
-                            <button>+</button>
+                    {
+                        this.state.cartList.map((item, index) => {
+                            return (
+                                <tr key={item.id}>
+                                    <th>{item.id}</th>
+                                    <th>{item.title}</th>
+                                    <th>{item.price}</th>
+                                    <th>
+                                        <button onClick={() => {
+                                            this.props.store.dispatch(decrement(item.id))
+                                        }}>-</button>
+                                        <span>{item.amount}</span>
+                                        <button onClick={() => {
+                                            this.props.store.dispatch(increment(item.id))
+                                        }}>+</button>
 
 
-                        </th>
-                        <th>Null</th>
-                    </tr>
+                                    </th>
+                                    <th>Null</th>
+                                </tr>
+                            )
+                        })
+                    }
                 </tbody>
             </table>
         )

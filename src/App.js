@@ -10,7 +10,7 @@ class App extends Component {
         })
     }
     addTodo = (todoTitle) => {
-        console.log(todoTitle)
+
         this.setState({
             todoList: this.state.todoList.concat({
                 id: Math.random(),
@@ -40,7 +40,7 @@ class App extends Component {
         })
         this.__proto__.http.getTodos()
             .then(resp => {
-                console.log(resp.data)
+                // console.log(resp.data)
                 if (resp.status === 200) {
 
                     this.setState({
