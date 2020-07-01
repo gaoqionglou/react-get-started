@@ -22,7 +22,7 @@ export const fetchBlogListFail = () => {
 export const fetchBlogList = () => dispatch => {
     dispatch(startFetchBlogList())
     getPosts().then(resp => {
-        if (resp.status === 200) {
+        if (resp.status !== 200) {
             dispatch(fetchBlogListSuccess({ list: resp.data }))
         } else {
             dispatch(fetchBlogListFail())

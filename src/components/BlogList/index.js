@@ -5,7 +5,8 @@ import { fetchBlogList } from '../../actions/blog'
 const mapStateFromProps = (state) => {
     return {
         blogList: state.blog.list,
-        isLoading: state.blog.isLoading
+        isLoading: state.blog.isLoading,
+        errorMsg: state.blog.errorMsg
     }
 }
 class BlogList extends Component {
@@ -24,8 +25,9 @@ class BlogList extends Component {
 
         const {
             // eslint-disable-next-line
-            list, isLoading
+            list, isLoading, errorMsg
         } = this.props
+        const hasErr = Boolean(errorMsg)
         console.log('------------', this.props)
         return (
 
@@ -33,9 +35,11 @@ class BlogList extends Component {
                 <ul>
 
                     {
-                        this.props.blogList.map(blog => {
-                            return <BlogItem key={blog.id} {...blog} />
-                        })
+                        hasErr ? <div>{errorMsg}</div>
+                            :
+                            this.props.blogList.map(blog => {
+                                return <BlogItem key={blog.id} {...blog} />
+                            })
                     }
 
                 </ul>
