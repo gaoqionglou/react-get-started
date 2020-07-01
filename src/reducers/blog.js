@@ -8,9 +8,11 @@ export default (state = initState, action) => {
     switch (action.type) {
 
         case actionType.START_FETCH_BLOG_LIST:
-            state.isLoading = true
-            console.log('START_FETCH_BLOG_LIST', state, action)
-            return state
+
+            return {
+                ...state,
+                isLoading: true
+            }
         case actionType.FETCH_BLOG_LIST_SUCCESS:
             state.isLoading = false
             state.list = action.payload.list
