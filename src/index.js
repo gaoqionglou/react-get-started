@@ -19,7 +19,9 @@ import CartApp from './CartApp'
 // eslint-disable-next-line
 import CartRRApp from './CartReactReduxApp'
 import store from './store'
+
 import { Provider } from 'react-redux'
+import BlogApp from './BlogApp'
 React.Component.prototype.http = services
 
 // const app =  <h1>Welcome to React</h1>
@@ -88,7 +90,7 @@ class HocApp extends Component {
 // eslint-disable-next-line
 const HocCmp = HocApp
 
-window.store = store
+// window.store = store
 render(
     //练习context
     // <CounterProvider>
@@ -100,9 +102,15 @@ render(
 
     //练习Redux
     // <CartApp store={store}/>
+    //练习react-redux
+    // <Provider store={store}>
+    //     <CartRRApp />
+    // </Provider>
+
     <Provider store={store}>
-        <CartRRApp />
-    </Provider>,
+        <BlogApp />
+    </Provider>
+    ,
 
     document.querySelector('#root')
 )

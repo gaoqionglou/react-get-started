@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { CartList } from './components'
-class App extends Component {
+//练习使用redux
+class CartApp extends Component {
     constructor(props) {
         super(props)
         this.state = {}
@@ -18,4 +19,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default CartApp;
