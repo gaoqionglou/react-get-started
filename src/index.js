@@ -22,6 +22,8 @@ import store from './store'
 
 import { Provider } from 'react-redux'
 import BlogApp from './BlogApp'
+import RouterApp from './RouterApp'
+import { HashRouter as Router, Route } from 'react-router-dom'
 React.Component.prototype.http = services
 
 // const app =  <h1>Welcome to React</h1>
@@ -107,9 +109,15 @@ render(
     //     <CartRRApp />
     // </Provider>
 
-    <Provider store={store}>
-        <BlogApp />
-    </Provider>
+    //模拟带网络异步请求的redux
+    // <Provider store={store}>
+    //     <BlogApp />
+    // </Provider>
+
+    //Router
+    <Router>
+        <Route component={RouterApp} path='/' />
+    </Router>
     ,
 
     document.querySelector('#root')
