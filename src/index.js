@@ -16,7 +16,10 @@ import withCopyRight from './withCopyRight'
 import Another from './Another'
 // eslint-disable-next-line
 import CartApp from './CartApp'
+// eslint-disable-next-line
+import CartRRApp from './CartReactReduxApp'
 import store from './store'
+import { Provider } from 'react-redux'
 React.Component.prototype.http = services
 
 // const app =  <h1>Welcome to React</h1>
@@ -91,10 +94,15 @@ render(
     // <CounterProvider>
     //     <CounterApp />
     // </CounterProvider>
-    
+
     //练习HOC高阶组件
     // <HocCmp />
-    
-    <CartApp store={store}/>,
+
+    //练习Redux
+    // <CartApp store={store}/>
+    <Provider store={store}>
+        <CartRRApp />
+    </Provider>,
+
     document.querySelector('#root')
 )
