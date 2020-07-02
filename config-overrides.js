@@ -3,6 +3,8 @@
 //     return config
 // }
 
+
+//不在使用了
 const { override, addDecoratorsLegacy, addLessLoader, fixBabelImports } = require('customize-cra')
 const theme = require('./theme')
 
@@ -12,16 +14,16 @@ module.exports = override(
         'import', {
         libraryName: 'antd',
         libraryDirectory: 'es',
-        style: 'css'
+        style: true
     }
     ),
     addDecoratorsLegacy(),
-    //addLessLoader必须在fixBabelImports之后配置否则样式不生效
-    // addLessLoader({
-    //     lessOptions: {
-    //         modifyVars: theme,
-    //         javascriptEnabled: true,
-    //     },
-    // }),
+    // addLessLoader必须在fixBabelImports之后配置否则样式不生效
+    addLessLoader({
+        lessOptions: {
+            modifyVars: theme,
+            javascriptEnabled: true,
+        },
+    }),
 
 )

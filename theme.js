@@ -1,1 +1,2 @@
-module.exports = { '@primary-color': '#F00' }
+module.exports = { '@primary-color': 
+'#F00' }
