@@ -14,3 +14,16 @@ img.src="http://xx.com/btn-01.gif?x=1&y=2"
     // "start": "react-app-rewired start",
     // "build": "react-app-rewired build",
     // "test": "react-app-rewired test",
+
+    {
+    "plugins": [
+        "transform-runtime",
+        [
+            "import",
+            {
+                "libraryName": "antd",
+                "style": true
+            }
+        ]
+    ]
+}

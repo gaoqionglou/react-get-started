@@ -1,9 +1,13 @@
   /* 组件按需加载样式，不用把antd的样式全部引入，减少size
-实现方法：使用babel-plugins-import 编辑.babelrc*/
- //@import '~antd/dist/antd.less'; 
-.has-text-red{
-    color: cadetblue;
-}
+实现方法：使用babel-plugins-import 编辑.babelRc*/
+//  @import '~antd/dist/antd.less'; 
+// .has-text-red{
+//     color: cadetblue;
+// }
+@bgc:#979;
 body {
-    background-color: #000;
+  background-color: @bgc;
+}
+.txt{
+  color: #979797;
 }

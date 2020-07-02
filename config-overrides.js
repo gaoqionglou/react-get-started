@@ -4,7 +4,7 @@
 // }
 
 
-//不在使用了
+//不在使用
 const { override, addDecoratorsLegacy, addLessLoader, fixBabelImports } = require('customize-cra')
 const theme = require('./theme')
 
