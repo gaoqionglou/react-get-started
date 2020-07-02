@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-
- class Dashboard extends Component {
+ 
+ 
+class ArticleEdit extends Component {
     render() {
         return (
             <div>
-                Dashboard
+               
+               ArticleEdit
             </div>
         )
     }
 }
-export default Dashboard
+export default ArticleEdit
