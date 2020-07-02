@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import './index.css'
+import './App.less'
 import classNames from 'classnames'
 import styled from 'styled-components'
 
@@ -24,6 +24,12 @@ import { Provider } from 'react-redux'
 import BlogApp from './BlogApp'
 import RouterApp from './RouterApp'
 import { HashRouter as Router, Route } from 'react-router-dom'
+
+import { ConfigProvider } from 'antd';
+// 由于 antd 组件的默认文案是英文，所以需要修改为中文
+import zhCN from 'antd/es/locale/zh_CN';
+
+
 React.Component.prototype.http = services
 
 // const app =  <h1>Welcome to React</h1>
@@ -115,9 +121,11 @@ render(
     // </Provider>
 
     //Router
-    <Router>
-        <Route component={RouterApp} path='/' />
-    </Router>
+    <ConfigProvider locale={zhCN} >
+        <Router>
+            <Route component={RouterApp} path='/' />
+        </Router>
+    </ConfigProvider>
     ,
 
     document.querySelector('#root')

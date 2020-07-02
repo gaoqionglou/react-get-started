@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import withCopyRight from './withCopyRight'
-@withCopyRight
+
 class Another extends Component {
     render() {
         return (
@@ -12,4 +12,4 @@ class Another extends Component {
     }
 }
 
-export default Another
+export default withCopyRight(Another)

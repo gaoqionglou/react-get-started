@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 // eslint-disable-next-line
-import { increment, decrement,decrementAsync } from '../../actions/cart'
+import { increment, decrement, decrementAsync } from '../../actions/cart'
 //作用相当于把state赋值给组件的props
 // eslint-disable-next-line
 const mapStateFromProps = (state) => { //state相当于store.getState
@@ -11,7 +11,7 @@ const mapStateFromProps = (state) => { //state相当于store.getState
     }
 }
 
-@connect(mapStateFromProps, { increment, decrement,decrementAsync })
+
 class CartRRList extends Component {
 
     constructor(props) {
@@ -43,7 +43,7 @@ class CartRRList extends Component {
                                     <th>{item.title}</th>
                                     <th>{item.price}</th>
                                     <th>
-                                    <button onClick={() => {
+                                        <button onClick={() => {
                                             // this.props.dispatch(decrement(item.id))
                                             // this.props.reduce(item.id)
                                             this.props.decrementAsync(item.id)
@@ -93,4 +93,4 @@ class CartRRList extends Component {
 
 //或者使用装饰者模式，
 
-export default (CartRRList)
+export default connect(mapStateFromProps, { increment, decrement, decrementAsync })(CartRRList)
