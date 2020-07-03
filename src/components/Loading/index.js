@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 
- class Dashboard extends Component {
+ class Loading extends Component {
     render() {
-        console.log('Dashboard')
         return (
             <div>
-                Dashboard
+                Loading...
             </div>
         )
     }
 }
-export default Dashboard
+export default Loading

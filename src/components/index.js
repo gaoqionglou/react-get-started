@@ -7,8 +7,9 @@ import Counter from './Counter'
 import CartList from './CartList'
 import CartRRList from './CartRRList'
 import BlogList from './BlogList'
+import Loading from './Loading'
 export {
-    TodoHeader, TodoInput, TodoList, TodoItem, CountBtn, Counter, CartList, CartRRList, BlogList
+    TodoHeader, TodoInput, TodoList, TodoItem, CountBtn, Counter, CartList, CartRRList, BlogList,Loading
 }
 
 // export { default as TodoHeader } from './TodoHeader'
