@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { adminRouter } from './routes'
 import { Route, Switch, Redirect, Link } from 'react-router-dom'
+import {Frame} from './components'
 class StandardApp extends Component {
     render() {
-        console.log(adminRouter)
+   
         return (
-            <div>
-                <span>StandardApp</span>
+            <Frame>
+               
                 <Switch>
                     {
                         adminRouter.map(route => {
@@ -18,7 +19,7 @@ class StandardApp extends Component {
                     <Redirect to={adminRouter[0].pathname} from='/admin' exact />
                     <Redirect to="/404" />
                 </Switch>
-            </div>
+            </Frame>
         )
     }
 }

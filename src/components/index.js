@@ -8,8 +8,19 @@ import CartList from './CartList'
 import CartRRList from './CartRRList'
 import BlogList from './BlogList'
 import Loading from './Loading'
+import Frame from './Frame'
 export {
-    TodoHeader, TodoInput, TodoList, TodoItem, CountBtn, Counter, CartList, CartRRList, BlogList,Loading
+    TodoHeader, 
+    TodoInput, 
+    TodoList, 
+    TodoItem, 
+    CountBtn, 
+    Counter, 
+    CartList, 
+    CartRRList, 
+    BlogList,
+    Loading,
+    Frame
 }
 
 // export { default as TodoHeader } from './TodoHeader'

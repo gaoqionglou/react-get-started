@@ -19,6 +19,7 @@ const Loadable = ({ loader, loading: Loading }) => {
         }
         render() {
             const { LoadedComponent } = this.state
+            // const LoadedComponent  = this.state.LoadedComponent
             return (
 
                 LoadedComponent ?

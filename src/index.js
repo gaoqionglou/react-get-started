@@ -6,7 +6,6 @@ import styled from 'styled-components'
 // eslint-disable-next-line
 import AppHome from './App'
 import * as services from './services'
-import './App.less'
 import { CountBtn, Counter } from './components'
 // eslint-disable-next-line
 import { CounterProvider } from './countStore'
@@ -29,7 +28,7 @@ import { ConfigProvider, Button } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 import StandardApp from './StandardApp'
 import { mainRouter,adminRouter } from './routes'
-
+import './App.less'
 
 React.Component.prototype.http = services
 
