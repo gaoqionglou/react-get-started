@@ -27,7 +27,7 @@ import { ConfigProvider, Button } from 'antd';
 // 由于 antd 组件的默认文案是英文，所以需要修改为中文
 import zhCN from 'antd/es/locale/zh_CN';
 import StandardApp from './StandardApp'
-import { mainRouter,adminRouter } from './routes'
+import { mainRouter, adminRouter } from './routes'
 import './App.less'
 
 React.Component.prototype.http = services
@@ -128,21 +128,22 @@ render(
     // </ConfigProvider>
 
     //
-    <Router>
-        <Switch>
-            <Route path="/admin" render={(routeProps) => {
-                //TODO：登陆权限处理，需要登陆才能访问/admin
-                return <StandardApp {...routeProps} />
-            }} />
-            {
-                mainRouter.map(route => {
-                    return <Route key={route.pathname} path={route.pathname} component={route.component} />
-                })
-            }
-           <Redirect to='/admin' from='/' exact/>
-           <Redirect to='/404'/>
-        </Switch>
-    </Router>
+    <ConfigProvider locale={zhCN} >
+        <Router>
+            <Switch>
+                <Route path="/admin" render={(routeProps) => {
+                    //TODO：登陆权限处理，需要登陆才能访问/admin
+                    return <StandardApp {...routeProps} />
+                }} />
+                {
+                    mainRouter.map(route => {
+                        return <Route key={route.pathname} path={route.pathname} component={route.component} />
+                    })
+                }
+                <Redirect to='/admin' from='/' exact />
+                <Redirect to='/404' />
+            </Switch>
+        </Router></ConfigProvider>
     ,
 
     document.querySelector('#root')
