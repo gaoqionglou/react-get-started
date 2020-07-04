@@ -27,3 +27,7 @@ service.interceptors.response.use((resp) => {
 export const getArticles = (offset = 0, limited = 10) => {
     return service.post('/api/v1/articleList', { offset, limited })
 }
+
+export const delArticle = (id) => {
+    return service.post(`/api/v1/articleDelete/${id}`)
+}
