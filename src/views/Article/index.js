@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Card, Button, Table, Tag, Modal, Typography, notification } from 'antd'
+import { Card, Button, Table, Tag, Modal, Typography, notification, Tooltip } from 'antd'
 import { getArticles, delArticle } from '../../request'
 import XLSX from 'xlsx'
 import moment from 'moment'
+
 
 const ButtonGroup = Button.Group
 
@@ -46,7 +47,7 @@ class ArticleList extends Component {
                     key: columnKey,
                     render: (text, record, index) => {
 
-                        return <Tag color={record.amount > 250 ? "red" : "green"}>{record.amount}</Tag>
+                        return <Tooltip title={record.amount > 250 ? "超过250" : "不足250"} ><Tag color={record.amount > 250 ? "red" : "green"}>{record.amount}</Tag></Tooltip>
                     }
 
                 }
@@ -77,8 +78,8 @@ class ArticleList extends Component {
 
                 return (
                     <ButtonGroup>
-                        <Button size='small' type='primary'>编辑</Button>
-                        <Button size='small' type='danger' onClick={this.showDelArticleModal.bind(this, record)}>删除</Button>
+                        <Button size='small' onClick={this.toEdit.bind(this, record.id, record.title)}>编辑</Button>
+                        <Button size='small' onClick={this.showDelArticleModal.bind(this, record)}>删除</Button>
                     </ButtonGroup>
                 )
             }
@@ -194,11 +195,27 @@ class ArticleList extends Component {
             })
         })
     }
+    toEdit = (id, title) => {
+
+        this.props.history.push({
+            pathname: `/admin/article/edit/${id}`,
+            state: {
+                title: title
+            }
+        }
+        )
+    }
     render() {
         return (
             <div>
 
-                <Card title="文章列表" bordered={false} extra={<Button type='ghost' onClick={this.toExcel}>导出excel</Button>}>
+                <Card title="文章列表" bordered={false} extra={
+
+                    <ButtonGroup>
+                        <Button type='ghost' onClick={this.toExcel}>导出excel</Button>
+                        <Button size='ghost' onClick={this.getData}>刷新</Button>
+                    </ButtonGroup>
+                }>
                     <Table
                         dataSource={this.state.dataSource}
                         columns={this.state.columns}
@@ -222,8 +239,8 @@ class ArticleList extends Component {
                     confirmLoading={this.state.delConfirmLoadingVisible}
                     onOk={this.deleteArticle}
                 ><Typography>你确定要删除标题为：【 <span style={{ color: '#F00' }}>{this.state.delArticleModalTitle}</span>】的文章吗?</Typography></Modal>
-            </div>
+            </div >
         )
     }
 }
-export default ArticleList
+export default (ArticleList)

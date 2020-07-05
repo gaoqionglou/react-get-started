@@ -11,7 +11,6 @@ const Loadable = ({ loader, loading: Loading }) => {
         }
         componentDidMount() {
             loader().then(resp => {
-                console.log(resp.default)
                 this.setState({
                     LoadedComponent: resp.default
                 })

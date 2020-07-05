@@ -20,7 +20,6 @@ class App extends Component {
         })
     }
     onCheckChange = (id) => {
-        console.log(id)
         this.setState((prevState) => {
             return {
                 todoList: prevState.todoList.map(todo => {

@@ -31,3 +31,11 @@ export const getArticles = (offset = 0, limited = 10) => {
 export const delArticle = (id) => {
     return service.post(`/api/v1/articleDelete/${id}`)
 }
+
+export const getArticleById = (id) => {
+    return service.post(`/api/v1/article/${id}`)
+}
+
+export const saveArticle = (id,data) => {
+    return service.post(`/api/v1/article/edit/${id}`,data)
+}
