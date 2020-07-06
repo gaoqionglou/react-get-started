@@ -62,6 +62,9 @@ class ArticleEdit extends Component {
     }
     componentDidMount() {
         this.initEditor()
+        this.setState({
+            saveArticleLoading: true
+        })
         getArticleById(this.props.match.params.id)
             .then(resp => {
                 console.log(resp)
@@ -77,8 +80,11 @@ class ArticleEdit extends Component {
                 this.editor.txt.html(resp.content)
             }).catch(err => {
 
-            }).finally(() => { }
-
+            }).finally(() => {
+                this.setState({
+                    saveArticleLoading: false
+                })
+            }
             )
     }
     onFinish = (values) => {
