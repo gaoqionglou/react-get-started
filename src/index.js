@@ -128,22 +128,24 @@ render(
     // </ConfigProvider>
 
     //
-    <ConfigProvider locale={zhCN} >
-        <Router>
-            <Switch>
-                <Route path="/admin" render={(routeProps) => {
-                    //TODO：登陆权限处理，需要登陆才能访问/admin
-                    return <StandardApp {...routeProps} />
-                }} />
-                {
-                    mainRouter.map(route => {
-                        return <Route key={route.pathname} path={route.pathname} component={route.component} />
-                    })
-                }
-                <Redirect to='/admin' from='/' exact />
-                <Redirect to='/404' />
-            </Switch>
-        </Router></ConfigProvider>
+    <Provider store={store}>
+        <ConfigProvider locale={zhCN} >
+            <Router>
+                <Switch>
+                    <Route path="/admin" render={(routeProps) => {
+                        //TODO：登陆权限处理，需要登陆才能访问/admin
+                        return <StandardApp {...routeProps} />
+                    }} />
+                    {
+                        mainRouter.map(route => {
+                            return <Route key={route.pathname} path={route.pathname} component={route.component} />
+                        })
+                    }
+                    <Redirect to='/admin' from='/' exact />
+                    <Redirect to='/404' />
+                </Switch>
+            </Router></ConfigProvider>
+    </Provider>
     ,
 
     document.querySelector('#root')

@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
 import { Card, Button, Avatar, List, Badge } from 'antd'
+import { connect } from 'react-redux'
+import { markNotificationAsReadById,markAllNotificationsAsRead } from '../../actions/notifications'
+const mapState = state => {
+    const { list = [] } = state.notifications
+    return {
+        list
+    }
+}
+
 class Notifications extends Component {
 
     render() {
@@ -21,17 +30,17 @@ class Notifications extends Component {
             <Card
                 title="通知中心"
                 bordered={false}
-                extra={<Button>全部标记已读</Button>}
+                extra={<Button onClick={this.props.markAllNotificationsAsRead} disabled={this.props.list.every(item => item.hasRead === true)}>全部标记已读</Button>}
             >
                 <List
                     itemLayout="horizontal"
-                    dataSource={data}
+                    dataSource={this.props.list}
                     renderItem={item => (
-                        <List.Item extra={<Button>标记已读</Button>}>
+                        <List.Item extra={item.hasRead ? '' : <Button onClick={this.props.markNotificationAsReadById.bind(this, item.id)}>标记已读</Button>}>
                             <List.Item.Meta
                                 avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                                title={<Badge dot>{item.title}</Badge>}
-                                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                                title={<Badge dot={!item.hasRead}>{item.title}</Badge>}
+                                description={item.desc}
                             />
                         </List.Item>
                     )}
@@ -40,4 +49,4 @@ class Notifications extends Component {
         )
     }
 }
-export default Notifications
+export default connect(mapState, { markNotificationAsReadById,markAllNotificationsAsRead })(Notifications)

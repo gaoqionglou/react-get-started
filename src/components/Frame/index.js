@@ -5,17 +5,22 @@ import { DownOutlined } from '@ant-design/icons';
 
 import { adminRouter } from '../../routes'
 import { Link, withRouter } from 'react-router-dom'
-
+import { connect } from 'react-redux'
 import logo from './logo.png'
 
 const { Header, Content, Sider } = Layout;
 const menu = adminRouter.filter(route => route.isNav === true)
 
 
+const mapState = state => {
+    return {
+        notificationsCount: state.notifications.list.filter(item => item.hasRead === false).length
+    }
+}
 
 class Frame extends Component {
 
-    onDropdownMenuClick = ({key})=>{
+    onDropdownMenuClick = ({ key }) => {
         this.props.history.push(key)
     }
     onMenuClick = ({ item, key, keyPath, domEvent }) => {
@@ -26,12 +31,12 @@ class Frame extends Component {
         const mymenu = (
             <Menu onClick={this.onDropdownMenuClick}>
                 <Menu.Item key='/admin/notifications'>
-                    <Badge dot>通知中心</Badge>
+                    <Badge dot={Boolean(this.props.notificationsCount)}>通知中心</Badge>
                 </Menu.Item>
-                <Menu.Item  key='/admin/settings'>
+                <Menu.Item key='/admin/settings'>
                     个人设置
                 </Menu.Item>
-                <Menu.Item  key='/admin/quit'>
+                <Menu.Item key='/admin/quit'>
                     退出
                 </Menu.Item>
             </Menu>
@@ -49,7 +54,7 @@ class Frame extends Component {
                         <div style={{ display: 'flex', alignItems: 'center' }}>
                             <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>B</Avatar>
                             <span>Welcome! Bruce Wayne  </span>
-                            <Badge count={10} offset={[-10, -10]}>  <DownOutlined /> </Badge>
+                            <Badge count={this.props.notificationsCount} offset={[-10, -10]}>  <DownOutlined /> </Badge>
                         </div>
                     </Dropdown>
                 </Header>
@@ -97,4 +102,4 @@ class Frame extends Component {
         )
     }
 }
-export default withRouter(Frame)
+export default withRouter(connect(mapState)(Frame))
