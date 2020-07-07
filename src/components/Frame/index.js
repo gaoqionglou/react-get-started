@@ -1,22 +1,41 @@
 import './Frame.less'
 import React, { Component } from 'react'
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu, Breadcrumb, Dropdown, Avatar, Badge } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 
 import { adminRouter } from '../../routes'
 import { Link, withRouter } from 'react-router-dom'
 
 import logo from './logo.png'
-const { SubMenu } = Menu;
+
 const { Header, Content, Sider } = Layout;
 const menu = adminRouter.filter(route => route.isNav === true)
 
 
+
 class Frame extends Component {
+
+    onDropdownMenuClick = ({key})=>{
+        this.props.history.push(key)
+    }
     onMenuClick = ({ item, key, keyPath, domEvent }) => {
         console.log(item, key, keyPath, domEvent)
         this.props.history.push(key)
     }
     render() {
+        const mymenu = (
+            <Menu onClick={this.onDropdownMenuClick}>
+                <Menu.Item key='/admin/notifications'>
+                    <Badge dot>通知中心</Badge>
+                </Menu.Item>
+                <Menu.Item  key='/admin/settings'>
+                    个人设置
+                </Menu.Item>
+                <Menu.Item  key='/admin/quit'>
+                    退出
+                </Menu.Item>
+            </Menu>
+        );
         const selectKeyArr = this.props.location.pathname.split('/')
         selectKeyArr.length = 3
         console.log(selectKeyArr.join('/'))
@@ -26,12 +45,19 @@ class Frame extends Component {
                     <div className="logo v-logo" >
                         <img src={logo} alt="logo" />
                     </div>
+                    <Dropdown overlay={mymenu} >
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                            <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>B</Avatar>
+                            <span>Welcome! Bruce Wayne  </span>
+                            <Badge count={10} offset={[-10, -10]}>  <DownOutlined /> </Badge>
+                        </div>
+                    </Dropdown>
                 </Header>
                 <Layout>
                     <Sider width={200} className="site-layout-background">
                         <Menu
                             mode="inline"
-                            selectedKeys={[ selectKeyArr.join('/')]}
+                            selectedKeys={[selectKeyArr.join('/')]}
                             onClick={this.onMenuClick}
                             style={{ height: '100%', borderRight: 0 }}
                         >

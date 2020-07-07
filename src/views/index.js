@@ -9,6 +9,7 @@ import Dashboard from './Dashboard'
 import ArticleList from './Article'
 import ArticleEdit from './Article/Edit'
 import Settings from './Settings'
+import Notifications from './Notifications'
 //因为有个loadable高阶组件在外面导致routeProps传不进去，不要loadable
 // import { Loading } from '../components'
 
@@ -35,4 +36,4 @@ import Settings from './Settings'
 //     loading: Loading
 // })
 // export { Loading }
-export { Artical, Home, User, ArticalDetail, NotFound, Login, Dashboard, ArticleList, ArticleEdit, Settings }
+export { Notifications, Artical, Home, User, ArticalDetail, NotFound, Login, Dashboard, ArticleList, ArticleEdit, Settings }
