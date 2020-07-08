@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
 import { Card, Button, Avatar, List, Badge } from 'antd'
 import { connect } from 'react-redux'
-import { markNotificationAsReadById,markAllNotificationsAsRead } from '../../actions/notifications'
+import { markNotificationAsReadById, markAllNotificationsAsRead, getTheNotifications } from '../../actions/notifications'
 const mapState = state => {
-    const { list = [] } = state.notifications
+    const { list = [], isLoading } = state.notifications
     return {
-        list
+        list, isLoading
     }
 }
 
 class Notifications extends Component {
+    componentDidMount() {
+        this.props.getTheNotifications()
+    }
 
     render() {
         const data = [
@@ -35,6 +38,7 @@ class Notifications extends Component {
                 <List
                     itemLayout="horizontal"
                     dataSource={this.props.list}
+                    loading={this.props.isLoading}
                     renderItem={item => (
                         <List.Item extra={item.hasRead ? '' : <Button onClick={this.props.markNotificationAsReadById.bind(this, item.id)}>标记已读</Button>}>
                             <List.Item.Meta
@@ -49,4 +53,4 @@ class Notifications extends Component {
         )
     }
 }
-export default connect(mapState, { markNotificationAsReadById,markAllNotificationsAsRead })(Notifications)
+export default connect(mapState, { markNotificationAsReadById, markAllNotificationsAsRead,getTheNotifications })(Notifications)

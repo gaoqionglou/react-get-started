@@ -7,7 +7,7 @@ import { adminRouter } from '../../routes'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import logo from './logo.png'
-
+import { getTheNotifications } from '../../actions/notifications'
 const { Header, Content, Sider } = Layout;
 const menu = adminRouter.filter(route => route.isNav === true)
 
@@ -19,6 +19,9 @@ const mapState = state => {
 }
 
 class Frame extends Component {
+    componentDidMount() {
+        this.props.getTheNotifications()
+    }
 
     onDropdownMenuClick = ({ key }) => {
         this.props.history.push(key)
@@ -36,7 +39,7 @@ class Frame extends Component {
                 <Menu.Item key='/admin/settings'>
                     个人设置
                 </Menu.Item>
-                <Menu.Item key='/admin/quit'>
+                <Menu.Item key='/login'>
                     退出
                 </Menu.Item>
             </Menu>
@@ -102,4 +105,4 @@ class Frame extends Component {
         )
     }
 }
-export default withRouter(connect(mapState)(Frame))
+export default withRouter(connect(mapState, { getTheNotifications })(Frame))

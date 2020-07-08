@@ -11,6 +11,31 @@ const initState = {
         title: 'XXXX',
         desc: "YYYYY",
         hasRead: true
+    }, {
+        id: 1,
+        title: 'abssd',
+        desc: "pppp",
+        hasRead: false
+    }, {
+        id: 1,
+        title: 'abssd',
+        desc: "pppp",
+        hasRead: false
+    }, {
+        id: 1,
+        title: 'abssd',
+        desc: "pppp",
+        hasRead: false
+    }, {
+        id: 1,
+        title: 'abssd',
+        desc: "pppp",
+        hasRead: false
+    }, {
+        id: 1,
+        title: 'abssd',
+        desc: "pppp",
+        hasRead: false
     }]
 }
 
@@ -41,6 +66,21 @@ export default (state = initState, action) => {
 
                     return item
                 })
+            }
+        case actionType.START_NOTIFICATION_POST:
+            return {
+                ...state,
+                isLoading: true
+            }
+        case actionType.FINISH_NOTIFICATION_POST:
+            return {
+                ...state,
+                isLoading: false
+            }
+        case actionType.RECIVED_NOTIFICATIONS:
+            return {
+                ...state,
+                list: action.payload
             }
         default:
             return state
