@@ -36,8 +36,8 @@ export const getArticleById = (id) => {
     return service.post(`/api/v1/article/${id}`)
 }
 
-export const saveArticle = (id,data) => {
-    return service.post(`/api/v1/article/edit/${id}`,data)
+export const saveArticle = (id, data) => {
+    return service.post(`/api/v1/article/edit/${id}`, data)
 }
 
 export const getArticleAmout = () => {
@@ -47,3 +47,8 @@ export const getArticleAmout = () => {
 export const getNotifications = () => {
     return service.post(`/admin/notifications`)
 }
+
+export const login = (username,password) => {
+    return service.post(`/api/v1/login`)
+}
+
