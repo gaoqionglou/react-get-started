@@ -27,15 +27,19 @@ class Frame extends Component {
     }
 
     onDropdownMenuClick = ({ key }) => {
-        this.props.history.push(key)
+        if (key === "/logout") {
+            this.props.logout()
+            console.log('logout')
+        } else {
+            this.props.history.push(key)
+            console.log('no logout')
+        }
     }
     onMenuClick = ({ item, key, keyPath, domEvent }) => {
         console.log(item, key, keyPath, domEvent)
-        if (key === "/logout") {
-            this.props.logout()
-        } else {
-            this.props.history.push(key)
-        }
+
+        this.props.history.push(key)
+
     }
     render() {
         const mymenu = (

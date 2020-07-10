@@ -1,6 +1,8 @@
 import actionType from '../actions/actionType'
-const isLogin = Boolean(window.localStorage.getItem('authToken')) || Boolean(window.sessionStorage.getItem('authToken'))
-const userInfo = JSON.parse(window.localStorage.getItem('userInfo')) || JSON.parse(window.sessionStorage.getItem('userInfo'))
+// const isLogin = Boolean(window.localStorage.getItem('authToken')) || Boolean(window.sessionStorage.getItem('authToken'))
+// const userInfo = JSON.parse(window.localStorage.getItem('userInfo')) || JSON.parse(window.sessionStorage.getItem('userInfo'))
+const isLogin =  Boolean(window.sessionStorage.getItem('authToken'))
+const userInfo =  JSON.parse(window.sessionStorage.getItem('userInfo'))
 const initState = {
     ...userInfo,
     isLogin,
