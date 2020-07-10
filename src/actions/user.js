@@ -17,10 +17,10 @@ export const loginSuccess = (userInfo) => {
 }
 
 export const loginFailed = () => {
-    window.localStorage.setItem('authToken', '')
-    window.sessionStorage.setItem('authToken', '')
-    window.localStorage.setItem('userInfo', '')
-    window.sessionStorage.setItem('userInfo', '')
+    window.localStorage.removeItem('authToken')
+    window.sessionStorage.removeItem('authToken')
+    window.localStorage.removeItem('userInfo')
+    window.sessionStorage.removeItem('userInfo')
     return {
         type: actionType.LOGIN_FAILED
     }
