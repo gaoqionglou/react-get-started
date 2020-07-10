@@ -15,7 +15,7 @@ class StandardApp extends Component {
         this.state = {}
     }
     render() {
-        console.log(this.props)
+        console.log("StandardApp",this.props)
         return (
             this.props.isLogin ?
                 <Frame>

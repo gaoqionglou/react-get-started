@@ -8,13 +8,16 @@ import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import logo from './logo.png'
 import { getTheNotifications } from '../../actions/notifications'
+import { logout } from '../../actions/user'
 const { Header, Content, Sider } = Layout;
 const menu = adminRouter.filter(route => route.isNav === true)
 
 
 const mapState = state => {
     return {
-        notificationsCount: state.notifications.list.filter(item => item.hasRead === false).length
+        notificationsCount: state.notifications.list.filter(item => item.hasRead === false).length,
+        avatar: state.user.avatar,
+        displayName: state.user.displayName
     }
 }
 
@@ -28,7 +31,11 @@ class Frame extends Component {
     }
     onMenuClick = ({ item, key, keyPath, domEvent }) => {
         console.log(item, key, keyPath, domEvent)
-        this.props.history.push(key)
+        if (key === "/logout") {
+            this.props.logout()
+        } else {
+            this.props.history.push(key)
+        }
     }
     render() {
         const mymenu = (
@@ -39,7 +46,7 @@ class Frame extends Component {
                 <Menu.Item key='/admin/settings'>
                     个人设置
                 </Menu.Item>
-                <Menu.Item key='/login'>
+                <Menu.Item key='/logout'>
                     退出
                 </Menu.Item>
             </Menu>
@@ -55,8 +62,8 @@ class Frame extends Component {
                     </div>
                     <Dropdown overlay={mymenu} >
                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>B</Avatar>
-                            <span>Welcome! Bruce Wayne  </span>
+                            <Avatar src={this.props.avatar}></Avatar>
+                            <span>Welcome! {this.props.displayName}  </span>
                             <Badge count={this.props.notificationsCount} offset={[-10, -10]}>  <DownOutlined /> </Badge>
                         </div>
                     </Dropdown>
@@ -105,4 +112,4 @@ class Frame extends Component {
         )
     }
 }
-export default withRouter(connect(mapState, { getTheNotifications })(Frame))
+export default withRouter(connect(mapState, { getTheNotifications, logout })(Frame))
