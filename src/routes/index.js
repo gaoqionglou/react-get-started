@@ -1,4 +1,4 @@
-import { Artical, Home, User, ArticalDetail, NotFound, Login, Dashboard, ArticleList, ArticleEdit, Settings, Notifications } from '../views'
+import { Artical, Home, User, ArticalDetail, NotFound, Login, Dashboard, ArticleList, ArticleEdit, Settings, Notifications, NoAuth, Profile } from '../views'
 import React from 'react'
 import { DashboardOutlined, UnorderedListOutlined, SettingOutlined } from '@ant-design/icons';
 export const mainRouter = [
@@ -32,16 +32,17 @@ export const adminRouter = [{
     pathname: '/admin/notifications',
     component: Notifications,
     roles: ['001', '002', '003']
+}
+    , {
+    pathname: '/admin/noauth',
+    component: NoAuth,
+    roles: ['001', '002', '003']
 },
-// , {
-//     pathname: '/admin/noauth',
-//     component: NoAuth,
-//     roles: ['001', '002', '003']
-// }, {
-//     pathname: '/admin/profile',
-//     component: Profile,
-//     roles: ['001', '002', '003']
-// }, 
+{
+    pathname: '/admin/profile',
+    component: Profile,
+    roles: ['001', '002', '003']
+},
 {
     pathname: '/admin/settings',
     component: Settings,

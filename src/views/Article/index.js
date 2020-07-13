@@ -93,6 +93,9 @@ class ArticleList extends Component {
         getArticles(this.state.offset, this.state.limited).then(resp => {
             const columnKeys = Object.keys(resp.list[0])
             const columns = this.createColumns(columnKeys)
+            console.log(this.updater.isMouted(this))
+            //如果请求完成组件已经被销毁，就不需要再设置state。否则会报错
+            if(!this.updater.isMouted(this)) return
             this.setState({
                 total: resp.total,
                 dataSource: resp.list,

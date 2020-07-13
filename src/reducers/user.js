@@ -4,13 +4,15 @@ const userInfo = JSON.parse(window.localStorage.getItem('userInfo')) || JSON.par
 const initState = {
     ...userInfo,
     isLogin,
-    isLoading: false
+    isLoading: false,
+    role: ''
 }
 export default (state = initState, action) => {
     switch (action.type) {
         case actionType.START_LOGIN:
             return { ...state, isLoading: true }
         case actionType.LOGIN_SUCCESS:
+            console.log({ ...state, ...action.payload.userInfo, isLoading: false, isLogin: true })
             return { ...state, ...action.payload.userInfo, isLoading: false, isLogin: true }
         case actionType.LOGIN_FAILED:
             return {
@@ -19,7 +21,8 @@ export default (state = initState, action) => {
                 avatar: '',
                 role: '',
                 authToken: '',
-                isLogin: false
+                isLogin: false,
+                role: ''
             }
         default:
 
