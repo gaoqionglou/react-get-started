@@ -7,6 +7,15 @@ export const startLogin = () => {
     }
 }
 
+export const changeAvatar = (avatarUrl) => {
+    return {
+        type: actionType.CHANGE_AVATAR,
+        payload: {
+            avatarUrl
+        }
+    }
+}
+
 export const loginSuccess = (userInfo) => {
     return {
         type: actionType.LOGIN_SUCCESS,

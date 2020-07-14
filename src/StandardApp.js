@@ -5,9 +5,20 @@ import { Frame } from './components'
 
 import { connect } from 'react-redux'
 
+const localRole = JSON.parse(window.localStorage.getItem('userInfo')) !== null ? JSON.parse(window.localStorage.getItem('userInfo')).role : ''
+const sessionRole = JSON.parse(window.sessionStorage.getItem('userInfo')) !== null ? JSON.parse(window.sessionStorage.getItem('userInfo')).role : ''
+
+const getRole = () => {
+    if (localRole == '') {
+        return sessionRole
+    } else {
+        return localRole
+    }
+}
+
 const mapState = state => ({
     isLogin: state.user.isLogin,
-    role: state.user.role || JSON.parse(window.localStorage.getItem('userInfo')).role || JSON.parse(window.sessionStorage.getItem('userInfo'))
+    role: state.user.role === '' ? getRole() : state.user.role
 })
 
 class StandardApp extends Component {
@@ -26,6 +37,7 @@ class StandardApp extends Component {
                             adminRouter.map(route => {
                                 return <Route exact={route.exact} key={route.pathname} path={route.pathname} render={(routeProps) => {
                                     const hasPermission = route.roles.includes(this.props.role)
+                                    if (route.pathname === '/admin/login') return <route.component {...routeProps} />
                                     return hasPermission ? <route.component {...routeProps} /> : <Redirect to='/admin/noauth' />
                                 }} />
                             })

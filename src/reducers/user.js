@@ -12,7 +12,7 @@ export default (state = initState, action) => {
         case actionType.START_LOGIN:
             return { ...state, isLoading: true }
         case actionType.LOGIN_SUCCESS:
-            console.log({ ...state, ...action.payload.userInfo, isLoading: false, isLogin: true })
+            console.log('LOGIN_SUCCESS',{ ...state, ...action.payload.userInfo, isLoading: false, isLogin: true })
             return { ...state, ...action.payload.userInfo, isLoading: false, isLogin: true }
         case actionType.LOGIN_FAILED:
             return {
@@ -23,6 +23,11 @@ export default (state = initState, action) => {
                 authToken: '',
                 isLogin: false,
                 role: ''
+            }
+        case actionType.CHANGE_AVATAR:
+            return {
+                ...state,
+                avatar: action.payload.avatarUrl
             }
         default:
 
